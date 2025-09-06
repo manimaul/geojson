@@ -5,7 +5,7 @@ plugins {
 }
 
 
-group = "io.madrona.geojson"
+group = "io.madrona"
 version = "1.0-SNAPSHOT"
 
 repositories {
