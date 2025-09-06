@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform") version "2.2.0"
     kotlin("plugin.serialization") version "2.2.0"
+    id("maven-publish")
 }
 
 
@@ -45,6 +46,21 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+            }
+        }
+    }
+}
+
+// ./gradlew publishKotlinMultiplatformPublicationToGitHubPackagesRepository
+// ./gradlew publishAllPublicationsToGitHubPackagesRepository
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/manimaul/geojson")
+            credentials {
+                username = System.getenv("GH_USER")
+                password = System.getenv("GH_TOKEN")
             }
         }
     }
